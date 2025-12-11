@@ -25,18 +25,18 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: 20           # Node LTS 就好
+          node-version: 20           # Node 20（穩定版）
 
       - name: Install dependencies
-        run: npm install             # 依 package.json 安裝套件
+        run: npm install             # 安裝 package.json 裡的套件
 
       - name: Build with Vite
-        run: npm run build           # 產生 dist/ 資料夾
+        run: npm run build           # 這一步會產生 dist/ 資料夾
 
       - name: Upload dist folder as Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./dist               # 只上傳 dist
+          path: ./dist               # 只上傳 dist，而不是整個 repo
 
   deploy:
     needs: build
